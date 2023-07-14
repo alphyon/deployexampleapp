@@ -22,7 +22,7 @@ class EventServiceProvider extends ServiceProvider
 
         ChirpCreated::class => [
             SendChirpCreatedNotifications::class,
-        ]
+        ],
     ];
 
     /**

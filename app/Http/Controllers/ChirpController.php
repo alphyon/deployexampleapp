@@ -31,10 +31,11 @@ class ChirpController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'message' => 'required|string|max:255'
+            'message' => 'required|string|max:255',
         ]);
 
         $request->user()->chirps()->create($validated);
+
         return redirect(route('chirps.index'));
     }
 
@@ -54,7 +55,7 @@ class ChirpController extends Controller
         $this->authorize('update', $chirp);
 
         return view('chirps.edit', [
-            'chirp' => $chirp
+            'chirp' => $chirp,
         ]);
     }
 
@@ -65,10 +66,11 @@ class ChirpController extends Controller
     {
         $this->authorize('update', $chirp);
         $validated = $request->validate([
-            'message' => 'required|string|max:255'
+            'message' => 'required|string|max:255',
         ]);
 
         $chirp->update($validated);
+
         return redirect(route('chirps.index'));
     }
 
@@ -80,6 +82,7 @@ class ChirpController extends Controller
         $this->authorize('delete', $chirp);
 
         $chirp->delete();
+
         return redirect(route('chirps.index'));
     }
 }
